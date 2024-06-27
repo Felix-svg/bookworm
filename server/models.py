@@ -47,3 +47,9 @@ class Book(db.Model, SerializerMixin):
 
     def __repr__(self):
         return f"<Book {self.id}: {self.title} by {self.author}>"
+
+
+class TokenBlocklist(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    jti = db.Column(db.String(36), nullable=False)
+    created_at = db.Column(db.DateTime, server_default=db.func.now(), nullable=False)
