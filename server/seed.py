@@ -7,9 +7,11 @@ with app.app_context():
     Book.query.delete()
 
     print("Creating users")
-    user1 = User(username="johndoe", email="johndoe@gmail.com")
+    user1 = User(username="felixomondi", email="felixomosh7@gmail.com", role="admin")
     user1.set_password("1234")
-    db.session.add(user1)
+    user2 = User(username="johndoe", email="johndoe@gmail.com")
+    user2.set_password("1234")
+    db.session.add_all([user1, user2])
     db.session.commit()
 
     print("Creating books")
@@ -19,7 +21,13 @@ with app.app_context():
         genre="Classic Literature",
         user_id=1,
     )
-    db.session.add(book1)
+    book2 = Book(
+        title="1984",
+        author="George Orwell",
+        genre="Dystopian Fiction",
+        user_id=2,
+    )
+    db.session.add_all([book1, book2])
     db.session.commit()
 
     print("Seeding database...")
