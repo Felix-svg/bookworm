@@ -1,29 +1,22 @@
-import axios from "axios";
+import React from "react";
+import Hero from "../components/Hero";
+import About from "../components/About";
+import Features from "../components/Features";
+import Testimonials from "../components/Testimonials";
+import HowItWorks from "../components/HowItWorks";
+import CallToAction from "../components/CallToAction";
 
 const HomePage = () => {
-//   const logout = async () => {
-//     try {
-//       const token = localStorage.getItem("token");
-//       await axios.post(
-//         "http://127.0.0.1:5000/logout",
-//         {},
-//         {
-//           headers: {
-//             Authorization: `Bearer ${token}`,
-//           },
-//         }
-//       );
-//       localStorage.removeItem("token");
-//       // Redirect to login or home page
-//       window.location.href = "/login";
-//     } catch (error) {
-//       console.error("Logout failed:", error);
-//     }
-//   };
+  // const username = localStorage.getItem("username") || "Guest";
 
   return (
     <div>
-      <h1 className="font-bold text-center text-4xl">Book~Worm</h1>
+      <Hero />
+      <About />
+      <Features />
+      <Testimonials />
+      <HowItWorks />
+      <CallToAction />
     </div>
   );
 };

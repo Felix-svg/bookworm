@@ -282,7 +282,7 @@ def login():
 
         # Create token with an expiration time of 1 hour
         token = user.get_token(expires_in=timedelta(hours=1))
-        return make_response(jsonify({"token": token}), 200)
+        return make_response(jsonify({"token": token, "username": user.username}), 200)
     except SQLAlchemyError as e:
         return make_response(jsonify({"error": "Database Error: " + str(e)}), 500)
     except Exception as e:

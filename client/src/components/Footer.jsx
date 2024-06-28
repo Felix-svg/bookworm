@@ -1,13 +1,41 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
-    return (
-        <footer className="bg-gray-800 text-white py-4 mt-auto">
-            <div className="container mx-auto text-center">
-                <p>&copy; 2024 BookWorm. All rights reserved.</p>
+  return (
+    <footer className="bg-gray-800 text-white py-8 mt-16">
+      <div className="container mx-auto text-center">
+        <div className="flex justify-center space-x-4 mb-4">
+          <Link to="/about" className="hover:underline">About Us</Link>
+          <Link to="/features" className="hover:underline">Features</Link>
+          <Link to="/testimonials" className="hover:underline">Testimonials</Link>
+          <Link to="/contact" className="hover:underline">Contact Us</Link>
+          <Link to="/privacy" className="hover:underline">Privacy Policy</Link>
+          <Link to="/terms" className="hover:underline">Terms of Service</Link>
+        </div>
+        <p className="mb-4">Follow us on social media</p>
+        <div className="flex justify-center space-x-4">
+          <a href="https://facebook.com" className="hover:underline">Facebook</a>
+          <a href="https://twitter.com" className="hover:underline">Twitter</a>
+          <a href="https://instagram.com" className="hover:underline">Instagram</a>
+        </div>
+        <div className="mt-4">
+          <form>
+            <label htmlFor="newsletter" className="block mb-2">Subscribe to our newsletter</label>
+            <div className="flex justify-center">
+              <input
+                type="email"
+                id="newsletter"
+                className="p-2 rounded-l"
+                placeholder="Your email"
+              />
+              <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded-r">Subscribe</button>
             </div>
-        </footer>
-    );
+          </form>
+        </div>
+      </div>
+    </footer>
+  );
 };
 
 export default Footer;

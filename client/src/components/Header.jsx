@@ -81,7 +81,7 @@ const Header = () => {
             className="text-white focus:outline-none"
           >
             <FontAwesomeIcon
-              icon={theme === "light" ? faSun : faMoon}
+              icon={theme === "light" ? faMoon : faSun}
               size="lg"
             />
           </button>
