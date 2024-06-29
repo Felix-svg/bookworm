@@ -2,7 +2,7 @@ import React from 'react';
 
 const Features = () => {
   return (
-    <section className="bg-gray-100 dark:bg-gray-800 dark:text-gray-200 py-20">
+    <section id="features" className="bg-gray-100 dark:bg-gray-800 dark:text-gray-200 py-20">
       <div className="container mx-auto text-center">
         <h2 className="text-3xl font-bold mb-8">Why Choose BookWorm?</h2>
         <div className="flex flex-wrap justify-center">

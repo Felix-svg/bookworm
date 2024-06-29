@@ -1,8 +1,12 @@
+from dotenv import load_dotenv
+
+load_dotenv()
+
 from datetime import datetime, timezone, timedelta
 from flask import make_response, jsonify, request
 from flask_jwt_extended import jwt_required, get_jwt_identity, get_jwt
 from config import app, db, jwt
-from models import User, Book, TokenBlocklist
+from models import User, Book, TokenBlocklist, Subscriber
 from functools import wraps
 from werkzeug.exceptions import HTTPException
 from sqlalchemy.exc import SQLAlchemyError
@@ -77,7 +81,7 @@ def create_user():
         db.session.add(new_user)
         db.session.commit()
         return make_response(
-            jsonify({"message": f"User '{username}' registered successfully"}),
+            jsonify({"user": new_user.to_dict(rules=["-books"])}),
             201,
         )
     except SQLAlchemyError as e:
@@ -182,7 +186,7 @@ def books():
                 db.session.add(new_book)
                 db.session.commit()
                 return make_response(
-                    jsonify({"message": f"Book '{title}' added successfully"}), 201
+                    jsonify({"book": new_book.to_dict(rules=["-user"])}), 201
                 )
 
             return create_book()
@@ -266,6 +270,20 @@ def book_by_id(id):
         )
 
 
+@app.route("/subscribe", methods=["POST"])
+def subscribe():
+    data = request.get_json()
+    email = data.get("email")
+    if not email:
+        return make_response(jsonify({"error": "Email is required"}), 400)
+    if Subscriber.query.filter_by(email=email).first():
+        return make_response(jsonify({"error": "Email already subscribed"}), 400)
+    new_subscriber = Subscriber(email=email)
+    db.session.add(new_subscriber)
+    db.session.commit()
+    return make_response(jsonify({"message": "Subscription successfull"}), 200)
+
+
 @app.route("/login", methods=["POST"])
 def login():
     try:
@@ -282,7 +300,9 @@ def login():
 
         # Create token with an expiration time of 1 hour
         token = user.get_token(expires_in=timedelta(hours=1))
-        return make_response(jsonify({"token": token, "username": user.username}), 200)
+        return make_response(
+            jsonify({"token": token, "username": user.username, "role": user.role}), 200
+        )
     except SQLAlchemyError as e:
         return make_response(jsonify({"error": "Database Error: " + str(e)}), 500)
     except Exception as e:

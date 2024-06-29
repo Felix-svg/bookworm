@@ -36,11 +36,12 @@ class Book(db.Model, SerializerMixin):
     title = db.Column(db.String, nullable=False)
     author = db.Column(db.String, nullable=False)
     genre = db.Column(db.String, nullable=False)
-    status = db.Column(db.String, default="unread")
+    status = db.Column(db.String, default="Unread")
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(
-        db.DateTime, onupdate=db.func.now(), server_default=db.func.now()
+        db.DateTime,
+        onupdate=db.func.now(),
     )
 
     # Relationship to associate book with its user
@@ -54,3 +55,10 @@ class TokenBlocklist(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     jti = db.Column(db.String(36), nullable=False)
     created_at = db.Column(db.DateTime, server_default=db.func.now(), nullable=False)
+
+
+class Subscriber(db.Model):
+    __tablename__ = "subscribers"
+    
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(120), unique=True, nullable=False)

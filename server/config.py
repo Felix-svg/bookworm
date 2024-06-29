@@ -5,11 +5,13 @@ from flask_migrate import Migrate
 from flask_cors import CORS
 from flask_bcrypt import Bcrypt
 from flask_jwt_extended import JWTManager
+import os
 
 app = Flask(__name__)
 
 app.secret_key = b"\x99-\x9fVi\xf6\xbc$\xc6\x9a\xfd}eg\xb3\xe4"
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///bookworm.db"
+# app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///bookworm.db"
+app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URI")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["JWT_SECRET_KEY"] = b"\x12\xf6\x94\xe5\xe36\xea\xd9I\x86\x95\xb5ci\x19@"
 app.json.compact = False

@@ -5,6 +5,8 @@ import AuthContext from '../context/AuthContext';
 const Sidebar = () => {
     const { auth } = useContext(AuthContext);
 
+    const isAdmin = auth?.user?.role === 'admin';
+
     return (
         <aside className="w-64 bg-gray-800 text-white h-full fixed">
             <div className="p-4">
@@ -12,7 +14,7 @@ const Sidebar = () => {
                 <nav className="space-y-2">
                     <Link to="/" className="block py-2 px-4 rounded hover:bg-gray-700">Home</Link>
                     <Link to="/books" className="block py-2 px-4 rounded hover:bg-gray-700">Books</Link>
-                    {auth?.token && (
+                    {isAdmin && (
                         <Link to="/users" className="block py-2 px-4 rounded hover:bg-gray-700">Users</Link>
                     )}
                 </nav>
