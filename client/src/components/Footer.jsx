@@ -70,7 +70,7 @@ const Footer = () => {
               <input
                 type="email"
                 id="newsletter"
-                className="p-2 rounded-l dark:text-gray-600"
+                className="p-2 rounded-l text-gray-600"
                 placeholder="Your email"
                 value={email}
                 onChange={handleEmailChange}
