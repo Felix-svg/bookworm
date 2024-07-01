@@ -1,5 +1,3 @@
-import React from 'react';
-
 const HowItWorks = () => {
   return (
     <section className="bg-gray-100 dark:bg-gray-800 dark:text-gray-200 py-20">

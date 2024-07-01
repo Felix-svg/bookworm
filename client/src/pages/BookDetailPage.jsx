@@ -12,11 +12,14 @@ const BookDetail = () => {
   const fetchBook = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.get(`http://127.0.0.1:5000/books/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axios.get(
+        `https://bookworm-6lvy.onrender.com/books/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       setBook(response.data.book);
     } catch (error) {
       if (error.response && error.response.status === 401) {
@@ -39,7 +42,7 @@ const BookDetail = () => {
       }
 
       const response = await axios.patch(
-        `http://127.0.0.1:5000/books/${id}`,
+        `https://bookworm-6lvy.onrender.com/books/${id}`,
         { status: "Read" },
         {
           headers: {
@@ -65,7 +68,7 @@ const BookDetail = () => {
   const deleteBook = async () => {
     try {
       const token = localStorage.getItem("token");
-      await axios.delete(`http://127.0.0.1:5000/books/${id}`, {
+      await axios.delete(`https://bookworm-6lvy.onrender.com/books/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

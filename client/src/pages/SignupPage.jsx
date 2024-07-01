@@ -32,11 +32,14 @@ const Signup = () => {
     }
 
     try {
-      const response = await axios.post("http://127.0.0.1:5000/users", {
-        email,
-        username,
-        password,
-      });
+      const response = await axios.post(
+        "https://bookworm-6lvy.onrender.com/users",
+        {
+          email,
+          username,
+          password,
+        }
+      );
 
       navigate("/login");
     } catch (error) {
@@ -55,7 +58,9 @@ const Signup = () => {
       {error && <div className="text-red-500 mb-4">{error}</div>}
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
-          <label className="block dark:text-gray-400 text-gray-700">Email</label>
+          <label className="block dark:text-gray-400 text-gray-700">
+            Email
+          </label>
           <input
             type="email"
             value={email}
@@ -64,7 +69,9 @@ const Signup = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block dark:text-gray-400 text-gray-700">Username</label>
+          <label className="block dark:text-gray-400 text-gray-700">
+            Username
+          </label>
           <input
             type="text"
             value={username}
@@ -73,7 +80,9 @@ const Signup = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block dark:text-gray-400 text-gray-700">Password</label>
+          <label className="block dark:text-gray-400 text-gray-700">
+            Password
+          </label>
           <input
             type="password"
             value={password}
@@ -90,7 +99,10 @@ const Signup = () => {
           </button>
           <p className="text-sm text-gray-600">
             Already have an account?{" "}
-            <Link to="/login" className="underline text-blue-500 hover:text-blue-700">
+            <Link
+              to="/login"
+              className="underline text-blue-500 hover:text-blue-700"
+            >
               Sign in
             </Link>
           </p>

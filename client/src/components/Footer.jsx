@@ -9,17 +9,22 @@ const Footer = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://127.0.0.1:5000/subscribe",{email})
-      setMessage(response.data.message)
-      setEmail("")
+      const response = await axios.post(
+        "https://bookworm-6lvy.onrender.com/subscribe",
+        { email }
+      );
+      setMessage(response.data.message);
+      setEmail("");
     } catch (error) {
-      setMessage(error.response ? error.response.data.error : "An error occured")
+      setMessage(
+        error.response ? error.response.data.error : "An error occured"
+      );
     }
   };
 
   const handleEmailChange = (e) => {
-    setEmail(e.target.value)
-  }
+    setEmail(e.target.value);
+  };
 
   return (
     <footer className="bg-gray-800 text-white py-8 mt-16">

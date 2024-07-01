@@ -13,11 +13,14 @@ const UserDetail = () => {
     const fetchUser = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await axios.get(`http://127.0.0.1:5000/users/${id}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await axios.get(
+          `https://bookworm-6lvy.onrender.com/users/${id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
         setUser(response.data.user);
       } catch (error) {
         setError("Failed to fetch user details. Please try again later.");
@@ -29,11 +32,14 @@ const UserDetail = () => {
   const deleteUser = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.delete(`http://127.0.0.1:5000/users/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axios.delete(
+        `https://bookworm-6lvy.onrender.com/users/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       navigate("/users");
     } catch (error) {
       setError("Failed to delete user. Please try again later.");
@@ -51,7 +57,9 @@ const UserDetail = () => {
         <h3 className="font-bold">{user.username}</h3>
         <p className="text-gray-600 dark:text-gray-300">Email: {user.email}</p>
         <p className="text-gray-600 dark:text-gray-300">Role: {user.role}</p>
-        <p className="text-gray-600 dark:text-gray-300">Date Created: {user.created_at}</p>
+        <p className="text-gray-600 dark:text-gray-300">
+          Date Created: {user.created_at}
+        </p>
         <button
           onClick={deleteUser}
           className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded mt-4"
